@@ -1,0 +1,67 @@
+# Research Type Keywords Configuration
+# Used for single-label classification of research papers.
+# Format:
+# Research Type Name:
+#   - keyword1
+#   - keyword2
+# The classifier will select the category with the highest score.
+
+Randomized Controlled Trial:
+  - randomized controlled trial
+  - randomised controlled trial
+  - rct
+  - double-blind
+  - double blind
+  - placebo-controlled
+  - phase 3 trial
+  - phase iii trial
+  - clinical trial
+
+Systematic Review & Meta-Analysis:
+  - systematic review
+  - meta-analysis
+  - prisma
+  - cochrane
+
+Guidelines & Consensus:
+  - guideline
+  - practice parameter
+  - consensus statement
+  - position paper
+  - recommendation
+  - algorithm
+
+Case Report & Series:
+  - case report
+  - case series
+  - case study
+  - case presentation
+  - clinical image
+
+Review Article:
+  - review article
+  - literature review
+  - narrative review
+  - state of the art
+  - current opinion
+  - overview
+
+Observational Study (Cohort/Case-Control):
+  - cohort study
+  - case-control
+  - cross-sectional
+  - observational study
+  - retrospective analysis
+  - prospective study
+  - registry
+  - longitudinal
+
+Basic Science / Preclinical:
+  - mouse model
+  - rat model
+  - in vitro
+  - in vivo
+  - cell culture
+  - animal model
+  - molecular mechanism
+  - signaling pathway

@@ -1,0 +1,9 @@
+[
+  {"id":"rct","label":"Randomized Controlled Trial"},
+  {"id":"cohort","label":"Cohort Study"},
+  {"id":"case_control","label":"Case-control"},
+  {"id":"systematic_review","label":"Systematic Review"},
+  {"id":"meta_analysis","label":"Meta-analysis"},
+  {"id":"guidelines","label":"Guidelines"},
+  {"id":"basic_science","label":"Basic Science"}
+]

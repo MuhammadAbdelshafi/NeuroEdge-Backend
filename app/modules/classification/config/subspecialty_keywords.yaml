@@ -1,0 +1,171 @@
+# Neurology Subspecialties Keywords Configuration
+# Used for multi-label classification of research papers.
+# Format:
+# Subspecialty Name:
+#   - keyword1
+#   - keyword2
+# Matches are case-insensitive and use word boundaries (e.g., "age" won't match "management").
+
+Vascular Neurology (Stroke):
+  - stroke
+  - ischemic
+  - hemorrhage
+  - haemorrhage
+  - thrombectomy
+  - thrombolysis
+  - tpa
+  - cva
+  - cerebrovascular
+  - aneurysm
+  - subarachnoid
+  - ich
+  - sah
+  - tia
+  - transient ischemic attack
+  - infarct
+  - infarction
+
+Epilepsy:
+  - epilepsy
+  - epileptic
+  - seizure
+  - ictal
+  - interictal
+  - eeg
+  - electroencephalography
+  - antiepileptic
+  - anti-seizure
+  - status epilepticus
+  - epileptogenic
+  - sudep
+
+Movement Disorders:
+  - parkinson
+  - parkinson's
+  - parkinsonism
+  - tremor
+  - dystonia
+  - chorea
+  - huntington
+  - huntington's
+  - dyskinesia
+  - bradykinesia
+  - ataxia
+  - essential tremor
+  - tourette
+  - tic disorder
+  - restless legs
+  - deep brain stimulation
+  - dbs
+
+Neuromuscular:
+  - neuromuscular
+  - myopathy
+  - myasthenia
+  - als
+  - amyotrophic lateral sclerosis
+  - neuropathy
+  - peripheral neuropathy
+  - guillain-barre
+  - cidp
+  - muscular dystrophy
+  - myositis
+  - emg
+  - electromyography
+  - nerve conduction
+
+Multiple Sclerosis & Neuroimmunology:
+  - multiple sclerosis
+  - ms
+  - demyelinating
+  - demyelination
+  - optic neuritis
+  - nmo
+  - neuromyelitis optica
+  - mog
+  - mogad
+  - autoimmune encephalitis
+  - anti-nmda
+  - ocrelizumab
+  - rituximab
+  - fingolimod
+
+Cognitive & Behavioral Neurology (Dementia):
+  - dementia
+  - alzheimer
+  - alzheimer's
+  - cognitive impairment
+  - mci
+  - lewy body
+  - frontotemporal
+  - ftd
+  - vascular dementia
+  - amyloid
+  - tau
+  - apoe
+  - neuropsychological
+
+Neuro-Oncology:
+  - glioma
+  - glioblastoma
+  - gbm
+  - astrocytoma
+  - meningioma
+  - medulloblastoma
+  - ependymoma
+  - brain tumor
+  - brain metastasis
+  - neuro-oncology
+  - vestibular schwannoma
+
+Headache & Pain:
+  - headache
+  - migraine
+  - cluster headache
+  - tension headache
+  - trigeminal neuralgia
+  - neuropathic pain
+  - cgrp
+  - triptan
+
+Neurocritical Care:
+  - neurocritical
+  - icu
+  - intracranial pressure
+  - icp
+  - traumatic brain injury
+  - tbi
+  - coma
+  - brain death
+  - herniation
+
+Pediatric Neurology:
+  - pediatric
+  - paediatric
+  - child neurology
+  - developmental delay
+  - cerebral palsy
+  - autism
+  - adhd
+  - infantile spasms
+  - west syndrome
+  - lennox-gastaut
+
+Neuro-Ophthalmology:
+  - neuro-ophthalmology
+  - optic nerve
+  - papilledema
+  - diplopia
+  - nystagmus
+  - visual field
+  - pupil
+  - horner syndrome
+
+Neuro-Infectious Disease:
+  - meningitis
+  - encephalitis
+  - brain abscess
+  - neurosyphilis
+  - neuro-hiv
+  - pml
+  - progressive multifocal leukoencephalopathy

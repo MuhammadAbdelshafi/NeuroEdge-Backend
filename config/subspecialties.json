@@ -1,0 +1,14 @@
+[
+  { "id":"epilepsy","label":"Epilepsy"},
+  { "id":"stroke","label":"Stroke"},
+  { "id":"movement_disorders","label":"Movement disorders"},
+  { "id":"neuroimmunology","label":"Neuroimmunology"},
+  { "id":"neurodegeneration","label":"Neurodegeneration"},
+  { "id":"headache","label":"Headache"},
+  { "id":"neuromuscular","label":"Neuromuscular"},
+  { "id":"neurocritical_care","label":"Neurocritical care"},
+  { "id":"pediatric_neurology","label":"Pediatric neurology"},
+  { "id":"neuro_oncology","label":"Neuro-oncology"},
+  { "id":"sleep_medicine","label":"Sleep medicine"},
+  { "id":"cognitive_neurology","label":"Cognitive neurology"}
+]
