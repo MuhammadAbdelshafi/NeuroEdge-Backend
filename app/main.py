@@ -38,13 +38,7 @@ async def catch_exceptions_middleware(request: Request, call_next):
 # or hiding the real error behind a CORS violation in the browser.
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000", 
-        "http://localhost:3001", 
-        "http://127.0.0.1:3000", 
-        "http://127.0.0.1:3001",
-        "https://neuroedge-frontend-production.up.railway.app" # common frontend railway name
-    ],
+    allow_origins=["*"], # Allow all origins for Vercel deployment
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
