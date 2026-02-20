@@ -15,21 +15,6 @@ app = FastAPI(
 )
 
 print(f"DEBUG: Loaded BACKEND_CORS_ORIGINS: {settings.BACKEND_CORS_ORIGINS}")
-
-
-# Set all CORS enabled origins
-# Set all CORS enabled origins
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://localhost:3001", "http://127.0.0.1:3000", "http://127.0.0.1:3001"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-# from app.core.middleware.activity import ActivityMiddleware
-# app.add_middleware(ActivityMiddleware)
-
 from fastapi import Request
 from fastapi.responses import JSONResponse
 import traceback
@@ -47,6 +32,23 @@ async def catch_exceptions_middleware(request: Request, call_next):
             status_code=500,
             content={"message": "Internal Server Error", "details": str(exc)},
         )
+
+# Set all CORS enabled origins (Moved down to be the outermost middleware)
+# This prevents exception-handling middleware from stripping CORS headers
+# or hiding the real error behind a CORS violation in the browser.
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000", 
+        "http://localhost:3001", 
+        "http://127.0.0.1:3000", 
+        "http://127.0.0.1:3001",
+        "https://neuroedge-frontend-production.up.railway.app" # common frontend railway name
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
