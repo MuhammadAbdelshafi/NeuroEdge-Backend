@@ -1,6 +1,7 @@
 from sqlalchemy import Column, ForeignKey, Table, DateTime
 from sqlalchemy.sql import func
 from app.db.base import Base
+import app.db.models.paper # Ensure Paper model is loaded for relationship resolution
 
 # Association table for User-Paper many-to-many relationship (Favorites)
 user_favorites = Table(

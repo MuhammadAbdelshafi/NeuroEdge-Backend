@@ -15,7 +15,7 @@ class Paper(Base):
 
     id = Column(String, primary_key=True, default=lambda: str(uuid.uuid4()))
     doi = Column(String, unique=True, index=True, nullable=True) # DOI can be null sometimes
-    pubmed_id = Column(String, unique=True, index=True, nullable=False)
+    pubmed_id = Column(String, unique=True, index=True, nullable=True) # Nullable for RSS fetched papers
     title = Column(String, nullable=False)
     authors = Column(JSON, nullable=True) # Store as list of strings
     journal = Column(String, nullable=True)

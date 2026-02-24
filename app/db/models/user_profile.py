@@ -24,4 +24,4 @@ class UserProfile(Base):
     country = Column(String, nullable=True)
     city = Column(String, nullable=True)
 
-    user = relationship("User", backref="profile")
+    user = relationship("User", backref="user_profile_data")

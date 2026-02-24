@@ -57,8 +57,8 @@ class PubMedFetcher:
         """Fetch papers for a single journal using Requests"""
         
         # 1. Search for IDs
-        # Correct format: "Journal"[Journal] AND start:end[Date - Publication] (No quotes around range)
-        search_query = f'"{journal_name}"[Journal] AND ({self._get_date_range_str()}[Date - Publication])'
+        # Correct format: "Journal"[Journal] AND start:end[Date - Entrez] (No quotes around range)
+        search_query = f'"{journal_name}"[Journal] AND ({self._get_date_range_str()}[Date - Entrez])'
         
         params = {
             "db": self.db,
@@ -186,6 +186,13 @@ class PubMedFetcher:
                                 publication_date = datetime(int(match.group(0)), 1, 1)
                                 
                     if publication_date is None:
+                        publication_date = datetime.now()
+                    
+                    # Only cap dates that are unreasonably far in the future (> 60 days)
+                    # Advance online / epub ahead of print papers legitimately have near-future dates
+                    from datetime import timedelta
+                    max_allowed_date = datetime.now() + timedelta(days=60)
+                    if publication_date > max_allowed_date:
                         publication_date = datetime.now()
 
                     paper = {

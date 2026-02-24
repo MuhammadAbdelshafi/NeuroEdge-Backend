@@ -68,8 +68,14 @@ def signup(user_in: UserCreate, db: Session = Depends(get_db)):
 
 @router.post("/login", response_model=ApiResponse[Token])
 def login(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    print(f"DEBUG LOGIN: Received username: '{form_data.username}', password length: {len(form_data.password)}")
     user_repo = UserRepository(db)
     user = user_repo.get_by_email(form_data.username)
+    if not user:
+        print("DEBUG LOGIN: User not found!")
+    elif not PasswordHasher.verify_password(form_data.password, user.password_hash):
+        print("DEBUG LOGIN: Password mismatch!")
+        
     if not user or not PasswordHasher.verify_password(form_data.password, user.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

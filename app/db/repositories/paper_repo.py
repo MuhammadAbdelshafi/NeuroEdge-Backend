@@ -18,7 +18,14 @@ class PaperRepository:
         return self.db.query(Paper).filter(Paper.doi == doi).first()
 
     def get_by_pubmed_id(self, pubmed_id: str) -> Optional[Paper]:
+        if pubmed_id is None:
+            return None
         return self.db.query(Paper).filter(Paper.pubmed_id == pubmed_id).first()
+
+    def get_by_title(self, title: str) -> Optional[Paper]:
+        # Using exact match for now. Lowercase comparison for safety.
+        from sqlalchemy import func
+        return self.db.query(Paper).filter(func.lower(Paper.title) == func.lower(title)).first()
     
     def list_papers(self, skip: int = 0, limit: int = 20) -> List[Paper]:
         return self.db.query(Paper).order_by(Paper.publication_date.desc()).offset(skip).limit(limit).all()

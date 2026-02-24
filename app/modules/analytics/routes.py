@@ -2,6 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from app.api.deps import get_db, get_current_user
 from app.db.models.user import User
+from app.db.models.paper import Paper
+from app.db.models.summary import PaperSummary # Required for Paper to resolve its relationships
 from app.modules.analytics.service import AnalyticsService
 from app.modules.analytics.schemas import UserEventCreate, UserEventResponse
 from app.schemas.api_response import ApiResponse
@@ -20,11 +22,19 @@ def log_user_event(
         event_type=event_in.event_type,
         metadata=event_in.metadata
     )
-    
+
     if not event:
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Failed to log event"
         )
-        
-    return ApiResponse(success=True, data=event)
+
+    # Return plain dict to avoid ORM metadata_json vs schema metadata mismatch
+    import json as _json
+    return ApiResponse(success=True, data=UserEventResponse(
+        id=str(event.id),
+        user_id=str(event.user_id) if event.user_id else None,
+        event_type=event.event_type,
+        metadata=_json.loads(event.metadata_json) if event.metadata_json else None,
+        created_at=event.created_at,
+    ))

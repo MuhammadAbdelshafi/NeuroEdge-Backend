@@ -1,4 +1,5 @@
 import os
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
@@ -8,6 +9,13 @@ class Settings(BaseSettings):
     # DATABASE
     # Defaulting to SQLite for local development as agreed
     DATABASE_URL: str = "sqlite:///./user_service.db"
+
+    @field_validator("DATABASE_URL", mode="before")
+    @classmethod
+    def assemble_db_connection(cls, v: str | None) -> str | None:
+        if isinstance(v, str) and v.startswith("postgres://"):
+            return v.replace("postgres://", "postgresql://", 1)
+        return v
     
     # SECURITY
     SECRET_KEY: str = "YOUR_SUPER_SECRET_KEY_CHANGE_IN_PROD"

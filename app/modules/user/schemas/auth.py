@@ -32,6 +32,12 @@ class TokenRefresh(BaseModel):
 class UserUpdate(BaseModel):
     full_name: Optional[str] = None
     phone: Optional[str] = None
+    age: Optional[int] = None
+    nationality: Optional[str] = None
+    place_of_work: Optional[str] = None
+    years_of_experience: Optional[int] = None
+    degree: Optional[str] = None
+    linkedin_profile: Optional[str] = None
 
 class PasswordChange(BaseModel):
     current_password: str

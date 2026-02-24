@@ -24,3 +24,6 @@ def run_classification_job():
     finally:
         db.close()
         logger.info("Paper Classification Job Finished.")
+
+if __name__ == "__main__":
+    run_classification_job()

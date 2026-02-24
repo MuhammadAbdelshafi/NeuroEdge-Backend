@@ -58,3 +58,46 @@ def get_users(
     service = AdminService(db)
     users = service.get_users(skip, limit)
     return ApiResponse(success=True, data=users)
+
+@router.get("/stats/journals")
+def get_journal_stats(
+    start_date: str = None,
+    end_date: str = None,
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(get_admin_user)
+):
+    from datetime import datetime
+    parsed_start = None
+    parsed_end = None
+    if start_date:
+        parsed_start = datetime.fromisoformat(start_date.replace('Z', '+00:00'))
+    if end_date:
+        parsed_end = datetime.fromisoformat(end_date.replace('Z', '+00:00'))
+        
+    service = AdminService(db)
+    stats = service.get_journal_stats(parsed_start, parsed_end)
+    return ApiResponse(success=True, data=stats)
+
+@router.get("/stats/fetch-status")
+def get_fetch_status(
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(get_admin_user)
+):
+    service = AdminService(db)
+    status_data = service.get_fetch_status()
+    return ApiResponse(success=True, data=status_data)
+
+@router.post("/jobs/trigger/fetch")
+def trigger_fetch_job(
+    db: Session = Depends(get_db),
+    admin_user: User = Depends(get_admin_user)
+):
+    import threading
+    from app.modules.papers.jobs.fetch_job import run_fetch_job
+    
+    # Run fetch job in a background thread to avoid blocking the request
+    thread = threading.Thread(target=run_fetch_job)
+    thread.daemon = True
+    thread.start()
+    
+    return ApiResponse(success=True, message="Scraping job triggered asynchronously. Check queue health for logs.")
